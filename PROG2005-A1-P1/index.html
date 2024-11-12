@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Client Manager</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body >
+<h1>Client Manager</h1>
 
+<form id="client-form">
+    <!-- Input fields for client details -->
+    <input type="text" id="id" placeholder="Client ID" required>
+    <input type="text" id="name" placeholder="Name" required>
+    <select id="gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Unspecified">Other/Unspecified</option>
+    </select>
+    <input type = "date" id="dateOfBirth" placeholder="Date of Birth" required>
+    <select id="program">
+        <option value="FatLoss">Fat Loss</option>
+        <option value="Senior"e>Senior Fitness</option>
+        <option value="Muscle">Muscle Gain</option>
+        <option value="Natal">Pre/Post Natal Fitness</option>
+        <option value="Contest">Contest Preparation</option>
+        <option value="General">Overall Fitness</option>
+        <option value="Unspecified">Unspecified</option>
+    </select>
+    <input type="text" id="email" placeholder="Email" required>
+    <input type="text" id="phoneNumber" placeholder="Phone" required>
+
+    <input type="date" id="startDate" placeholder="Start Date" required>
+    <input type="date" id="endDate" placeholder="End Date" required>
+    <input type="text" id="notes" placeholder="Notes">
+    <input type="checkbox" id="vip" placeholder="VIP Status">
+    <!-- More fields for DOB, gender, przogram, contact info, joined/ending dates, health notes, VIP status checkbox -->
+    <button type="button" onclick="addClientFromForm()">Add Client</button>
+</form>
+
+<div id="client-display"></div>
+
+<div id="vip-client-display"></div>
+
+<script src="app.js"></script>
 </body>
 </html>
