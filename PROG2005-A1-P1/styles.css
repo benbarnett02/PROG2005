@@ -29,3 +29,10 @@ input, select, button {
         padding: 10px;
     }
 }
+
+#id:read-only {
+    background-color: #a0a0a0;
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin: 5px 0;
+}

@@ -4,15 +4,13 @@ class Client {
     public gender: enumGender;
     public dateOfBirth: Date;
     public program: enumProgram;
+    public startDate: Date;
+    public endDate: Date;
+    public notes?: string;
+    public vip: boolean = false;
 
     private _email!: string;
     private _phoneNumber!: string;
-
-    public startDate: Date;
-    public endDate: Date;
-
-    public notes?: string;
-    public vip: boolean = false;
 
     public get email(): string {
         return this._email;
@@ -31,14 +29,11 @@ class Client {
     }
 
     public set phoneNumber(value: string) {
-        if (value.length == 10 && value.indexOf("04") == 0) { // Maybe we only want Australian numbers & no country code (start with 04)
-            this._phoneNumber = value;
-        } else {
-            throw new Error("Invalid phone number");
-        }
+        this._phoneNumber = value;
+        // was going to do validation here but it's not required & clunky.
     }
 
-    constructor(id: string, name: string, gender: enumGender, dateOfBirth: Date, program: enumProgram, email: string, phoneNumber: string, startDate: Date, endDate: Date, notes?: string) {
+    constructor(id: string, name: string, gender: enumGender, dateOfBirth: Date, program: enumProgram, email: string, phoneNumber: string, startDate: Date, endDate: Date, notes?: string, vip?: boolean) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -48,9 +43,9 @@ class Client {
         this.phoneNumber = phoneNumber;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.notes = notes;
+        this.notes = notes || "";
+        this.vip = vip || false;
     }
-
 }
 
 enum enumGender {
@@ -69,12 +64,10 @@ enum enumProgram {
     General = "Overall Fitness"
 }
 
-
 let clients: Client[] = [
     // Optional initial data
-    new Client("1", "Alice", enumGender.female, new Date(1990, 1, 1), enumProgram.FatLoss, "test@example.com", "0404999888", new Date(2024, 1, 1), new Date(2025, 1, 1), ""),
+    new Client("1", "Alice", enumGender.female, new Date(1990, 1, 1), enumProgram.FatLoss, "test@example.com", "0404999888", new Date(2024, 1, 1), new Date(2025, 1, 1), "", false),
 ];
-
 
 // Add a new client
 function addClient(client: Client): string {
@@ -90,13 +83,11 @@ function addClient(client: Client): string {
 // On submit button click
 function submitClientForm(): void {
     if (editingClientID) {
-        // Update existing client
-        const updatedClient = getClientFromForm()// Client from form function goes here
-        updateClient(editingClientID, updatedClient);
+        updateClient(editingClientID, getClientFromForm());
+        editingClientID = null;
+        disableEditMode();
     } else {
-        // Add new client
-        const newClient = getClientFromForm() // Client from form function goes here
-        addClient(newClient);
+        addClient(getClientFromForm());
     }
 }
 
@@ -111,7 +102,8 @@ function getClientFromForm(): Client {
         (document.getElementById("phoneNumber") as HTMLInputElement).value,
         new Date((document.getElementById("startDate") as HTMLInputElement).value),
         new Date((document.getElementById("endDate") as HTMLInputElement).value),
-        (document.getElementById("notes") as HTMLInputElement).value
+        (document.getElementById("notes") as HTMLInputElement).value,
+        (document.getElementById("vip") as HTMLInputElement).checked
     )
 }
 
@@ -122,19 +114,37 @@ function updateClient(clientID: string, updatedInfo: Partial<Client>): string {
 
     Object.assign(client, updatedInfo); // Merge updated info into client
     displayClients();
+    editingClientID = null; // Reset editing mode
     return "Client updated successfully!";
 }
 
-// Delete a client with confirmation
-function deleteClient(clientID: string): string {
-    if (confirm(`Are you sure you want to delete client with ID ${clientID}?`)) {
-        clients = clients.filter(client => client.id !== clientID);
-        displayClients();
-        return "Client deleted successfully!";
+function displayDeletionConfirmation(clientID: string): void {
+    // Display a confirmation WITHOUT using the browser confirm() dialog
+    const confirmation = document.getElementById("deletion-confirmation");
+    if (confirmation) {
+        confirmation.innerHTML = `Are you sure you want to delete client with ID ${clientID}?
+        <button onclick="deleteClient('${clientID}')">Yes</button>
+        <button onclick="hideDeletionConfirmation()">Cancel</button>
+        `;
+        confirmation.style.display = "block";
     }
-    return "Action canceled.";
 }
 
+function hideDeletionConfirmation(): void {
+    const confirmation = document.getElementById("deletion-confirmation");
+    if (confirmation) {
+        confirmation.innerHTML = "";
+    }
+}
+
+
+// Delete a client with confirmation
+function deleteClient(clientID: string) {
+    // Display a confirmation WITHOUT using the browser confirm() dialog
+    clients = clients.filter(client => client.id !== clientID);
+    displayClients();
+    hideDeletionConfirmation();
+}
 
 // Search for a client by ID
 function searchClient(clientID: string): Client | undefined {
@@ -178,23 +188,11 @@ function formatClient(client: Client): string {
       <p>Joined: ${client.startDate.toLocaleDateString()}</p>
       <p>Ending: ${client.endDate.toLocaleDateString()}</p>
       <p>Notes: ${client.notes || "N/A"}</p>
+      <p>Is VIP: ${client.vip ? "Yes" : "No"}</p>
         <button onclick="switchToEditMode('${client.id}')">Edit</button>
-        <button onclick="deleteClient('${client.id}')">Delete</button>
+        <button onclick="displayDeletionConfirmation('${client.id}')">Delete</button>
     </div>
   `;
-}
-
-
-function addClientFromForm(): void {
-    const clientID = (document.getElementById("id") as HTMLInputElement).value;
-
-    // Other form values...
-
-    const newClient: Client =
-        new Client(clientID, "Alice", enumGender.female, new Date(1990, 1, 1), enumProgram.FatLoss, "test@example.com", "0404999888", new Date(2024, 1, 1), new Date(2025, 1, 1), "");
-
-
-    let action = addClient(newClient);
 }
 
 
@@ -205,15 +203,14 @@ function populateEditForm(clientID: string): void {
         console.error("Client not found!");
         return;
     }
-
     // Switch to edit mode - make the id field read-only
-    (document.getElementById("clientID") as HTMLInputElement).readOnly = true;
+    (document.getElementById("id") as HTMLInputElement).readOnly = true;
     // Populate form fields with client data
-    (document.getElementById("clientID") as HTMLInputElement).value = client.id;
+    (document.getElementById("id") as HTMLInputElement).value = client.id;
     (document.getElementById("name") as HTMLInputElement).value = client.name;
     (document.getElementById("dateOfBirth") as HTMLInputElement).value = client.dateOfBirth?.toISOString().split("T")[0] || "";
     (document.getElementById("gender") as HTMLSelectElement).value = client.gender;
-    (document.getElementById("fitnessProgram") as HTMLSelectElement).value = client.program;
+    (document.getElementById("program") as HTMLSelectElement).value = client.program;
     (document.getElementById("email") as HTMLInputElement).value = client.email;
     (document.getElementById("phoneNumber") as HTMLInputElement).value = client.phoneNumber;
     (document.getElementById("startDate") as HTMLInputElement).value = client.startDate?.toISOString().split("T")[0] || "";
@@ -228,8 +225,20 @@ function switchToEditMode(clientID: string): void {
     editingClientID = clientID; // Set the client being edited
 
     // Update the form button label
-    const submitButton = document.getElementById("form-submit-button") as HTMLButtonElement;
+    const submitButton = document.getElementById("submit-button") as HTMLButtonElement;
     submitButton.textContent = "Update Client";
 }
 
+function disableEditMode(): void {
+    // Clear the form fields
+    const form = document.getElementById("client-form") as HTMLFormElement;
+    form.reset();
+
+    // Reset the form button label
+    const submitButton = document.getElementById("submit-button") as HTMLButtonElement;
+    submitButton.textContent = "Add Client";
+
+    // Reset the id field to be editable
+    (document.getElementById("id") as HTMLInputElement).readOnly = false;
+}
 

@@ -22,28 +22,30 @@
     </select>
     <input type = "date" id="dateOfBirth" placeholder="Date of Birth" required>
     <select id="program">
-        <option value="FatLoss">Fat Loss</option>
-        <option value="Senior"e>Senior Fitness</option>
-        <option value="Muscle">Muscle Gain</option>
-        <option value="Natal">Pre/Post Natal Fitness</option>
-        <option value="Contest">Contest Preparation</option>
-        <option value="General">Overall Fitness</option>
+        <option value="Fat Loss">Fat Loss</option>
+        <option value="Senior Fitness"e>Senior Fitness</option>
+        <option value="Muscle Gain">Muscle Gain</option>
+        <option value="Pre/Post Natal Fitness">Pre/Post Natal Fitness</option>
+        <option value="Contest Preparation">Contest Preparation</option>
+        <option value="Overall Fitness">Overall Fitness</option>
         <option value="Unspecified">Unspecified</option>
     </select>
-    <input type="text" id="email" placeholder="Email" required>
-    <input type="text" id="phoneNumber" placeholder="Phone" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="tel" id="phoneNumber" placeholder="Phone" v required>
 
     <input type="date" id="startDate" placeholder="Start Date" required>
     <input type="date" id="endDate" placeholder="End Date" required>
     <input type="text" id="notes" placeholder="Notes">
+    <div>
+    <label for="vip">Is a VIP?</label>
     <input type="checkbox" id="vip" placeholder="VIP Status">
-    <button type="button" onclick="addClientFromForm()">Add Client</button>
+    </div>
+    <button type="button" id="submit-button" onclick="submitClientForm()">Add Client</button>
 </form>
 
+<div id="deletion-confirmation"></div>
+
 <div id="client-display"></div>
-
-<div id="vip-client-display"></div>
-
 
 </body>
 </html>
