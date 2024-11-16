@@ -1,1 +1,62 @@
-<p>client-form works!</p>
+
+<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="id">Client ID:</label>
+    <input id="id" formControlName="id" />
+  </div>
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" />
+  </div>
+  <div>
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+  </div>
+  <div>
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Unspecified">Unspecified</option>
+    </select>
+  </div>
+  <div>
+    <label for="program">Fitness Program:</label>
+    <select id="program" formControlName="program">
+      <option value="Fat Loss">Fat Loss</option>
+      <option value="Senior Fitness">Senior Fitness</option>
+      <option value="Muscle Gain">Muscle Gain</option>
+      <option value="Pre/Post Natal Fitness">Pre/Post Natal Fitness</option>
+      <option value="Contest Preparation">Contest Preparation</option>
+      <option value="Overall Fitness">Overall Fitness</option>
+      <option value="Unspecified">Unspecified</option>
+    </select>
+  </div>
+  <div>
+    <label for="Email">Email:</label>
+    <input id="email" type="email" formControlName="email" />
+  </div>
+  <div>
+    <label for="phoneNumber">Phone Number:</label>
+    <input id="phoneNumber" type="tel" formControlName="phoneNumber" />
+  </div>
+  <div>
+    <label for="startDate">Start Date:</label>
+    <input id="startDate" type="startDate" formControlName="startDate" />
+  </div>
+  <div>
+    <label for="endDate">End Date:</label>
+    <input id="endDate" type="date" formControlName="endDate" />
+  </div>
+  <div>
+    <label for="notes">Notes:</label>
+    <textarea type="multi" id="notes" formControlName="notes" rows="3"></textarea>
+  </div>
+  <div>
+    <label for="vip">Is a VIP?</label>
+    <input id="vip" type="checkbox" formControlName="vip" />
+  </div>
+
+
+  <button type="submit">{{ isEditing ? 'Update' : 'Add' }} Client</button>
+</form>

@@ -1,0 +1,5 @@
+<div *ngIf="client">
+<h2 *ngIf="client">Editing {{client.name}}</h2>
+<app-client-form (formSubmitted)="submit($event)" [initialData]="client"></app-client-form>
+</div>
+

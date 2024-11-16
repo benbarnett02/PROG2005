@@ -1,0 +1,12 @@
+div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: left;
+}
+
+a{
+  display: block;
+  margin-bottom: 10px;
+}

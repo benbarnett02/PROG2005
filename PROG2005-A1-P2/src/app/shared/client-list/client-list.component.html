@@ -1,1 +1,20 @@
 <p>client-list works!</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Client ID</th>
+      <th>Client Name</th>
+      <th>Client Program</th>
+      <th>View/Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <td>{{ client.id }}</td>
+      <td>{{ client.name }}</td>
+      <td>{{ client.program }}</td>
+      <td><button role="link" [routerLink]="['/clients', client.id]">View/Edit</button></td>
+      <td><button (click)="deleteClient(client.id)">Delete</button></td>
+    </tr>
+  </tbody>
