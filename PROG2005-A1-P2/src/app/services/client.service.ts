@@ -52,6 +52,11 @@ export class ClientService {
     return this.clients;
   }
 
+  // Option to use a predicate to get the clients you want. This is only used on VIP page.
+  getFilteredClients(predicate: (client: Client) => boolean): Client[] {
+    return this.clients.filter(predicate);
+  }
+
   getClient(clientID: string): Client | undefined {
     return this.clients.find((c) => c.id === clientID);
   }
