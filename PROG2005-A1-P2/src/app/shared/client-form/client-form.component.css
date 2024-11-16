@@ -1,13 +1,13 @@
 .form-container {
   max-width: 600px;
-  margin: auto;
-  padding: 20px;
+  margin: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
 }
 
 form div {
+  /*space em out*/
   margin-bottom: 15px;
 }
 
@@ -33,14 +33,4 @@ small {
   color: red;
 }
 
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-}
 
-button[disabled] {
-  background-color: #ccc;
-}

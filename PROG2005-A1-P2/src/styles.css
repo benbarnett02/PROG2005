@@ -4,17 +4,25 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  justify-self: center;
+  /* not worth supporting tiny screens (smaller than a small phone). */
+
   min-height: 90vh;
   font-size: 16px;
   line-height: 1.5;
   max-width: 750px;
   background-color: #333333;
   color: #eeeeee;
+}
+
+@media (min-width: 600px) {
+
+  body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
+  justify-self: center;}
 }
 
 a{
@@ -28,5 +36,17 @@ a:hover {
 .left {
   text-align: left;
   align-self: start;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button[disabled] {
+  background-color: #ccc;
 }
 

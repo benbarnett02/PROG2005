@@ -8,4 +8,7 @@ th{
 
 table{
   text-align: left;
+  max-width: 100%;
+  overflow-x: scroll;
 }
+
