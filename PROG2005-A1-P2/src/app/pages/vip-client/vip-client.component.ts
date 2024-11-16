@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ClientListComponent} from '../../shared/client-list/client-list.component';
+import {Client, ClientService} from '../../services/client.service';
 
 @Component({
   selector: 'app-vip-client',
@@ -12,4 +13,8 @@ import {ClientListComponent} from '../../shared/client-list/client-list.componen
 })
 export class VipClientComponent {
 
+  constructor() {
+  }
+
+ filterPredicate = (c: Client) => c.vip;
 }

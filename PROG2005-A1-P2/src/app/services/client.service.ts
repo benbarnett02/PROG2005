@@ -71,7 +71,7 @@ export class ClientService {
   updateClient(clientID: string, updatedClient: Client): void {
     const index = this.clients.findIndex((c) => c.id === clientID);
     if (index === -1) {
-      throw new Error('Client not found!');
+      throw new Error('Client not found!2');
     }
     this.clients[index] = updatedClient;
   }

@@ -13,8 +13,9 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'clients', component: ClientsComponent },
   {path: 'clients/new', component: NewClientComponent},
-  {path:'clients/:id', component: ClientComponent },
   {path: 'clients/vip', component: VipClientComponent},
+  {path:'clients/:id', component: ClientComponent },
+
   { path: 'help', component: HelpComponent },
   { path: 'about', component: AboutComponent },
   { path: 'privacy-security', component: PrivacySecurityComponent },
