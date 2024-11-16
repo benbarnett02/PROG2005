@@ -3,14 +3,17 @@
   <div>
     <label for="id">Client ID:</label>
     <input id="id" formControlName="id" />
+    <small class="invalid-feedback">Please enter an ID.</small>
   </div>
   <div>
     <label for="name">Name:</label>
     <input id="name" formControlName="name" />
+    <small class="invalid-feedback">Please enter a name.</small>
   </div>
   <div>
     <label for="dateOfBirth">Date of Birth:</label>
     <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+    <small class="invalid-feedback">Please enter a date of birth.</small>
   </div>
   <div>
     <label for="gender">Gender:</label>
@@ -19,6 +22,7 @@
       <option value="Female">Female</option>
       <option value="Unspecified">Unspecified</option>
     </select>
+    <small class="invalid-feedback">Please select a gender from the list.</small>
   </div>
   <div>
     <label for="program">Fitness Program:</label>
@@ -31,32 +35,46 @@
       <option value="Overall Fitness">Overall Fitness</option>
       <option value="Unspecified">Unspecified</option>
     </select>
+    <small class="invalid-feedback">Please select a program from the list.</small>
   </div>
   <div>
     <label for="Email">Email:</label>
     <input id="email" type="email" formControlName="email" />
+    <small class="invalid-feedback">Please enter a valid email address.</small>
+
   </div>
   <div>
     <label for="phoneNumber">Phone Number:</label>
     <input id="phoneNumber" type="tel" formControlName="phoneNumber" />
+    <small class="invalid-feedback">Please enter a valid Phone Number.</small>
+
   </div>
   <div>
     <label for="startDate">Start Date:</label>
-    <input id="startDate" type="startDate" formControlName="startDate" />
+    <input id="startDate" type="date" formControlName="startDate" />
+    <small class="invalid-feedback">Please choose a start date.</small>
+
   </div>
   <div>
     <label for="endDate">End Date:</label>
     <input id="endDate" type="date" formControlName="endDate" />
+    <small class="invalid-feedback">Please choose an end date.</small>
+
   </div>
   <div>
     <label for="notes">Notes:</label>
     <textarea type="multi" id="notes" formControlName="notes" rows="3"></textarea>
+    <small class="invalid-feedback">Invalid input.</small>
+
   </div>
   <div>
     <label for="vip">Is a VIP?</label>
     <input id="vip" type="checkbox" formControlName="vip" />
+    <small class="invalid-feedback">Invalid input.</small>
   </div>
 
 
   <button type="submit">{{ isEditing ? 'Update' : 'Add' }} Client</button>
 </form>
+<small id="form-feedback" class="invalid-feedback"></small>
+

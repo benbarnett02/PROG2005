@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Client } from '../../services/client.service';
 import {formatDate} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client-form',
@@ -18,7 +19,7 @@ export class ClientFormComponent implements OnInit {
   clientForm!: FormGroup;
   isEditing: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.isEditing = !!this.initialData;
@@ -42,7 +43,12 @@ export class ClientFormComponent implements OnInit {
   onSubmit(): void {
     if (this.clientForm.valid) {
       this.formSubmitted.emit(this.clientForm.value);
+      document.getElementById('form-feedback')!.innerText = 'Form invalid. Please check your inputs. ';
       this.clientForm.reset(); // Reset form after submission
+      this.router.navigate(['/clients']);
+    } else {
+      console.error('Invalid form!');
+      document.getElementById('form-feedback')!.innerText = 'Form invalid. Please check your inputs. ';
     }
   }
 }
