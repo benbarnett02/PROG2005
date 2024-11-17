@@ -8,6 +8,7 @@ import { PrivacySecurityComponent } from './pages/privacy-security/privacy-secur
 import {ClientComponent} from './pages/client/client.component';
 import {NewClientComponent} from './pages/new-client/new-client.component';
 import {VipClientComponent} from './pages/vip-client/vip-client.component';
+import { NotFoundComponent } from './shared/NotFound/NotFound.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +20,7 @@ export const routes: Routes = [
   { path: 'help', component: HelpComponent },
   { path: 'about', component: AboutComponent },
   { path: 'privacy-security', component: PrivacySecurityComponent },
-  { path: '**', redirectTo: '' }, // Redirect for invalid URLs
+  { path: '**', component: NotFoundComponent }, // Redirect for invalid URLs
 ];
 
 @NgModule({

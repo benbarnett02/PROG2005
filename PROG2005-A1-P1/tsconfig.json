@@ -5,8 +5,6 @@
     "emitDecoratorMetadata": true,
     "module": "esnext",
     "lib": ["es2016", "esnext", "dom"],
-    "strict": true,
-    "strictNullChecks": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,

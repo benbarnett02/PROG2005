@@ -25,11 +25,11 @@ export class ClientService {
       name: 'John Doe',
       dateOfBirth: new Date('1990-01-01'),
       gender: 'Male',
-      program: 'Weight Loss',
+      program: 'Fat Loss',
       email: 'test@example.com',
       phoneNumber: '1234567890',
-      startDate: new Date('2021-01-01'),
-      endDate: new Date('2021-12-31'),
+      startDate: new Date('2024-01-01'),
+      endDate: new Date('2025-12-31'),
       notes: 'VIP client',
       vip: true
     },
@@ -38,14 +38,40 @@ export class ClientService {
       name: 'Jane Doe',
       dateOfBirth: new Date('1995-01-10'),
       gender: 'Female',
-      program: 'Body Building',
+      program: 'Muscle Gain',
       email: 'test@example.com',
       phoneNumber: '1234567890',
-      startDate: new Date('2021-01-01'),
-      endDate: new Date('2021-12-31'),
+      startDate: new Date('2024-01-01'),
+      endDate: new Date('2025-12-31'),
       notes: 'Not a VIP client',
       vip: false
-    }
+    },
+    {
+      id: '3',
+      name: 'Bob Smith',
+      dateOfBirth: new Date('1817-01-01'),
+      gender: 'Male',
+      program: 'Muscle Gain',
+      email: 'test@example.com',
+      phoneNumber: '0404040404',
+      startDate: new Date('2028-01-01'),
+      endDate: new Date('2032-12-31'),
+      notes: 'very important very vip guy.',
+      vip: true
+    },
+    {
+      id: '4',
+      name: 'Alice',
+      dateOfBirth: new Date('1820-01-01'),
+      gender: 'Female',
+      program: 'Muscle Gain',
+      email: 'test@example.com',
+      phoneNumber: '0404040404',
+      startDate: new Date('2028-01-01'),
+      endDate: new Date('2032-12-31'),
+      notes: 'not very important..',
+      vip: false
+    },
   ];
 
   getClients(): Client[] {
@@ -80,8 +106,9 @@ export class ClientService {
     this.clients = this.clients.filter((c) => c.id !== clientID);
   }
 
-  searchClient(clientID: string): Client | undefined {
-    return this.clients.find((c) => c.id === clientID);
+  // Searches by name or email
+  searchClient(query: string): Client[] {
+    return this.clients.filter((c) => c.name.toLowerCase().includes(query.toLowerCase()) || c.email.toLowerCase().includes(query.toLowerCase()));
   }
 
 
