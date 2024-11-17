@@ -146,10 +146,6 @@ function deleteClient(clientID: string) {
     hideDeletionConfirmation();
 }
 
-// Search for a client by ID
-function searchClient(clientID: string): Client | undefined {
-    return clients.find(client => client.id === clientID);
-}
 
 // Display all clients
 function displayClients(): void {
@@ -161,18 +157,7 @@ function displayClients(): void {
 
 window.onload = () => {
     displayClients();
-    displayVIPClients();
 }
-
-// Display all VIP clients
-function displayVIPClients(): void {
-    const vipClients = clients.filter(client => client.vip);
-    const displayDiv = document.getElementById("vip-client-display");
-    if (displayDiv) {
-        displayDiv.innerHTML = vipClients.map(client => formatClient(client)).join("");
-    }
-}
-
 
 // Helper to format client data for display
 function formatClient(client: Client): string {
@@ -194,7 +179,6 @@ function formatClient(client: Client): string {
     </div>
   `;
 }
-
 
 // Populate the edit form
 function populateEditForm(clientID: string): void {
