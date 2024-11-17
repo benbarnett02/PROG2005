@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Client } from '../../services/client.service';
-import {formatDate} from '@angular/common';
 import {Router} from '@angular/router';
 
 @Component({

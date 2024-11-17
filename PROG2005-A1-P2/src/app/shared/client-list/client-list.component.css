@@ -12,3 +12,10 @@ table{
   overflow-x: scroll;
 }
 
+dialog[open]{
+  display: block;
+}
+
+dialog{
+  display: none;
+}

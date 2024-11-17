@@ -22,8 +22,25 @@ protected clients?: Client[];
   constructor(private clientService: ClientService) {
   }
 
-  deleteClient(id: string) {
+  async deleteClient(id: string, event: MouseEvent): Promise<void> {
+    let confirmed :boolean = await this.showConfirmationModal('Are you sure you want to delete this client?');
+    console.log(confirmed);
+    if(confirmed){
+      this.clientService.deleteClient(id)
+      console.log("deleted");
+    };
+    this.clients = this.clientService.getClients().filter(this.filterPredicate);
+  }
 
+  async showConfirmationModal(message: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      console.log("showing confirmation modal");
+      const confirmation = document.getElementById("deletion-confirmation") as HTMLDialogElement;
+      confirmation.showModal();
+      document.getElementById("del-no")?.addEventListener('click', () => {resolve(false); console.log("n"); confirmation.close(); return false;});
+      document.getElementById("del-yes")?.addEventListener('click', () => {resolve(true);  console.log("y"); confirmation.close(); return true;});
+      document.getElementById("deletion-confirmation")?.addEventListener('close', () => {resolve(false); console.log("close"); return false;} );
+    });
   }
 
   ngOnInit() {

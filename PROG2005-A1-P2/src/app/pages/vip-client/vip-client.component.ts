@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ClientListComponent} from '../../shared/client-list/client-list.component';
-import {Client, ClientService} from '../../services/client.service';
+import {Client} from '../../services/client.service';
 import {RouterLink} from '@angular/router';
 
 @Component({
