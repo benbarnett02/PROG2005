@@ -1,3 +1,6 @@
+// Benjamin Barnett | Student ID: 23776070
+// PROG2005 Assignment 2 Part 2
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';

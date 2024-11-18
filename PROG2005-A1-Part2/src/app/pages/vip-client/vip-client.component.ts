@@ -1,3 +1,6 @@
+// Benjamin Barnett | Student ID: 23776070
+// PROG2005 Assignment 2 Part 2
+
 import { Component } from '@angular/core';
 import {ClientListComponent} from '../../shared/client-list/client-list.component';
 import {Client} from '../../services/client.service';

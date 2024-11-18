@@ -1,3 +1,6 @@
+// Benjamin Barnett | Student ID: 23776070
+// PROG2005 Assignment 2 Part 2
+
 import {Injectable} from '@angular/core';
 
 export interface Client {

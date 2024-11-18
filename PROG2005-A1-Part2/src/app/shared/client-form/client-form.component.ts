@@ -1,3 +1,6 @@
+// Benjamin Barnett | Student ID: 23776070
+// PROG2005 Assignment 2 Part 2
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Client } from '../../services/client.service';

@@ -1,3 +1,6 @@
+// Benjamin Barnett | Student ID: 23776070
+// PROG2005 Assignment 2 Part 2
+
 import {Component, Input} from '@angular/core';
 import {Client, ClientService} from '../../services/client.service';
 import {NgForOf} from '@angular/common';
@@ -13,6 +16,8 @@ import {RouterLink} from '@angular/router';
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.css'
 })
+
+
 export class ClientListComponent {
   @Input() filterPredicate: (client: Client) => boolean = (client: Client) => {
     return true;

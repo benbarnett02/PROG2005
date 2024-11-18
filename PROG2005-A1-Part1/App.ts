@@ -1,3 +1,6 @@
+// Benjamin Barnett | Student ID: 23776070
+// PROG2005 Assignment 2 Part 1
+
 class Client {
     public readonly id: string; // Using a string - we're never going to do math on it so why constrain ourselves to a number?
     public name: string;
