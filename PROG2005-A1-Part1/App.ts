@@ -30,7 +30,7 @@ class Client {
 
     public set phoneNumber(value: string) {
         this._phoneNumber = value;
-        // was going to do validation here but it's not required & clunky.
+        // was going to do validation here, but it's not required & clunky.
     }
 
     constructor(id: string, name: string, gender: enumGender, dateOfBirth: Date, program: enumProgram, email: string, phoneNumber: string, startDate: Date, endDate: Date, notes?: string, vip?: boolean) {
@@ -80,7 +80,7 @@ function addClient(client: Client): string {
 }
 
 
-// On submit button click
+// On submit button click (defined in html)
 function submitClientForm(): void {
     if (editingClientID) {
         updateClient(editingClientID, getClientFromForm());
@@ -139,7 +139,7 @@ function hideDeletionConfirmation(): void {
 
 
 // Delete a client with confirmation
-function deleteClient(clientID: string) {
+function deleteClient(clientID: string) : void {
     // Display a confirmation WITHOUT using the browser confirm() dialog
     clients = clients.filter(client => client.id !== clientID);
     displayClients();
@@ -155,7 +155,7 @@ function displayClients(): void {
     }
 }
 
-window.onload = () => {
+window.onload = () :void => {
     displayClients();
 }
 

@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {ClientFormComponent} from '../../shared/client-form/client-form.component';
 import {Client, ClientService} from '../../services/client.service';

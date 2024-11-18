@@ -24,19 +24,18 @@ export class ClientListComponent {
   constructor(private clientService: ClientService) {
   }
 
-  async deleteClient(id: string, event: MouseEvent): Promise<void> {
+  async deleteClient(id: string): Promise<void> {
     let confirmed: boolean = await this.showConfirmationModal('Are you sure you want to delete this client?');
     console.log(confirmed);
     if (confirmed) {
       this.clientService.deleteClient(id)
       console.log("deleted");
     }
-    ;
     this.clients = this.clientService.getClients().filter(this.filterPredicate);
   }
 
   async showConfirmationModal(message: string): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       console.log("showing confirmation modal");
       const confirmation = document.getElementById("deletion-confirmation") as HTMLDialogElement;
       confirmation.showModal();

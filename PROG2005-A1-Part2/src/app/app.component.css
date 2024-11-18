@@ -18,7 +18,3 @@ footer{
 footer>*{
   margin: 0 15px;
 }
-
-.grow{
-  flex-grow: 1;
-}

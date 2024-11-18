@@ -15,7 +15,7 @@
       <td>{{ client.name }}</td>
       <td>{{ client.program }}</td>
       <td><button role="link" [routerLink]="['/clients', client.id]">View/Edit</button></td>
-      <td><button (click)="deleteClient(client.id, $event)">Delete</button></td>
+      <td><button (click)="deleteClient(client.id)">Delete</button></td>
     </tr>
   </tbody>
 </table>
